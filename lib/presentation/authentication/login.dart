@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => const Homepage()),
+                  MaterialPageRoute(builder: (context) => const DoctorPage()),
                   (Route<dynamic> route) => false,
                 );
               },

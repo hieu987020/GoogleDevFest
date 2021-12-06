@@ -1,8 +1,8 @@
 import 'package:covid_report/presentation/presentations.dart';
 import 'package:flutter/material.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({Key? key}) : super(key: key);
+class DoctorPage extends StatelessWidget {
+  const DoctorPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +64,30 @@ class Homepage extends StatelessWidget {
             const DateContainer(title: 'Ngày 1'),
             const DateContainer(title: 'Ngày 2'),
             const DateContainer(title: 'Ngày 3'),
+            Container(
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const QRViewExample()),
+                  );
+                },
+                child: const Text(
+                  'Scan QR',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
