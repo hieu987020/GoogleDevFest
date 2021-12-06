@@ -1,3 +1,4 @@
+import 'package:covid_report/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,43 +17,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Login(),
-    );
-  }
-}
-
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          TextField(
-            controller: _usernameController,
-            decoration: const InputDecoration(
-              filled: true,
-              labelText: 'Username',
-            ),
-          ),
-          TextField(
-            controller: _passwordController,
-            decoration: const InputDecoration(
-              filled: true,
-              labelText: 'Password',
-            ),
-            obscureText: true,
-          ),
-          ElevatedButton(
-            child: const Text('LOGIN'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
     );
   }
 }
