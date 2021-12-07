@@ -1,6 +1,7 @@
 import 'package:covid_report/presentation/presentations.dart';
 import 'package:covid_report/values/app_assets.dart';
 import 'package:covid_report/values/app_colors.dart';
+import 'package:covid_report/values/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -92,6 +93,7 @@ class Login extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -112,7 +114,7 @@ class Login extends StatelessWidget {
                     },
                     child: Container(
                       child: const Text(
-                        'Đăng nhập',
+                        'Người tiêm',
                         style: TextStyle(
                           color: Colors.white,
                           // fontWeight: FontWeight.bold,
@@ -122,13 +124,37 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 15),
-                const Text(
-                  'Mời bạn đăng nhập ',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+              ],
+            ),
+            const SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 255,
+                  height: 61,
+                  decoration: BoxDecoration(
+                    color: AppColors.loginColor.withOpacity(1.0),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => DoctorPage()),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    child: Container(
+                      child: const Text(
+                        'Bác sỹ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
