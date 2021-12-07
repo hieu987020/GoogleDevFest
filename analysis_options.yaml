@@ -24,6 +24,18 @@ linter:
   rules:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+# assets:
+#   - assets/images/
+#   - assets/images/2x
+#   - assets/images/3x
+#   - assets/fonts/
+#   - assets/fonts/Montserrat
+
+# fonts:
+#   - family: Montserrat
+#     fonts:
+#       - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
+#       - asset: assets/fonts/Montserrat/Montserrat-Medium.ttf
+#       - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
