@@ -20,6 +20,23 @@ Future<void> createReport(Report report) async {
   }
 }
 
+Future<void> createReportCustomeId(Report report) async {
+  await Firebase.initializeApp();
+  var reports = FirebaseFirestore.instance
+      .collection('report')
+      .doc(report.identification);
+  try {
+    reports.set({
+      'Identification': report.identification,
+      'Name': report.patientName,
+      'DoctorConfirmed': report.doctorConfirmed,
+    });
+  } catch (e) {
+    log(e.toString());
+    throw (e.toString());
+  }
+}
+
 Future<void> updateReport(Report report) async {
   await Firebase.initializeApp();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -53,6 +70,16 @@ Future<Report> getReportByIdentification(String identification) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference reports = firestore.collection('report');
   try {
+    // var report1 = FirebaseFirestore.instance
+    //     .collection('report')
+    //     .doc(identification)
+    //     .snapshots();
+
+    // var report2 = FirebaseFirestore.instance
+    //     .collection('report')
+    //     .doc(identification)
+    //     .snapshots();
+    log("day la CCCD $identification");
     Report? result;
     await reports.get().then((QuerySnapshot querySnapshot) async {
       for (var doc in querySnapshot.docs) {

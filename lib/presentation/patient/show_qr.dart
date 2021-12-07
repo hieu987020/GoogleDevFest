@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ShowQRPage extends StatelessWidget {
-  const ShowQRPage({Key? key}) : super(key: key);
+  const ShowQRPage({Key? key, required this.data}) : super(key: key);
+  final String data;
 
   // This widget is the root of your application.
   @override
@@ -11,12 +13,22 @@ class ShowQRPage extends StatelessWidget {
         title: const Text('Mã QR của bạn'),
       ),
       body: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.red,
-        ),
+        child: QRCustome(data: data),
       ),
+    );
+  }
+}
+
+class QRCustome extends StatelessWidget {
+  const QRCustome({Key? key, required this.data}) : super(key: key);
+  final String data;
+
+  @override
+  Widget build(BuildContext context) {
+    return QrImage(
+      data: data,
+      version: QrVersions.auto,
+      size: 300.0,
     );
   }
 }

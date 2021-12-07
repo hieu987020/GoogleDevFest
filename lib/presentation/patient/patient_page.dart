@@ -5,30 +5,166 @@ import 'package:flutter/material.dart';
 
 class PatientPage extends StatelessWidget {
   const PatientPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    TextEditingController _identification = TextEditingController();
-    TextEditingController _name = TextEditingController();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello Bệnh nhân A'),
+    return const Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: ReportView(),
       ),
-      body: Column(
-        children: [
+    );
+  }
+}
+
+enum SingingCharacter { Male, Female }
+
+class ReportView extends StatefulWidget {
+  const ReportView({Key? key}) : super(key: key);
+
+  @override
+  _ReportViewState createState() => _ReportViewState();
+}
+
+class _ReportViewState extends State<ReportView> {
+  final _hoten = TextEditingController();
+  final _ns = TextEditingController();
+  final _nn = TextEditingController();
+  final _dvct = TextEditingController();
+  final _dclh = TextEditingController();
+  final _sdt = TextEditingController();
+  final _cccd = TextEditingController();
+  bool _confirmed = false; // xác nhận tiêm vắc xin
+
+  bool _ismale = false;
+  bool _isFemale = false;
+  // bool _value = false;
+  // int val = -1;
+  @override
+  Widget build(BuildContext context) {
+    SingingCharacter? _character = SingingCharacter.Male;
+    return SafeArea(
+      minimum: const EdgeInsets.only(left: 20, right: 20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const SizedBox(height: 80),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "PHIẾU XÁC NHẬN TIÊM CHỦNG COVID-19",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
           TextField(
-            controller: _identification,
-            decoration: const InputDecoration(
-              filled: true,
-              labelText: 'Identification',
-            ),
+            decoration: const InputDecoration(labelText: 'Họ tên'),
+            controller: _hoten,
           ),
           TextField(
-            controller: _name,
-            decoration: const InputDecoration(
-              filled: true,
-              labelText: 'Name',
-            ),
+            decoration: const InputDecoration(labelText: 'CMND/CCCD'),
+            controller: _cccd,
+          ),
+          Row(
+            children: [
+              const Text('Nam'),
+              IconButton(
+                onPressed: () {
+                  if (_ismale == false) {
+                    setState(() {
+                      _ismale = true;
+                      _isFemale = false;
+                    });
+                  }
+                },
+                icon: _ismale
+                    ? const Icon(Icons.check_box_outlined)
+                    : const Icon(Icons.check_box_outline_blank),
+              ),
+              const Text('Nữ'),
+              IconButton(
+                onPressed: () {
+                  if (_isFemale == false) {
+                    setState(() {
+                      _isFemale = true;
+                      _ismale = false;
+                    });
+                  }
+                },
+                icon: _isFemale
+                    ? const Icon(Icons.check_box_outlined)
+                    : const Icon(Icons.check_box_outline_blank),
+              ),
+            ],
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Ngày tháng năm sinh'),
+            controller: _ns,
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Nghề nghiệp'),
+            controller: _nn,
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Đơn vị công tác'),
+            controller: _dvct,
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Địa chỉ liên hệ'),
+            controller: _dclh,
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Số điện thoại'),
+            controller: _sdt,
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          /*TextButton(
+            onPressed: onPressed, 
+            child: Text('Continue'),
+          ),*/
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Text('PHIẾU XÁC NHẬN TIÊM CHỦNG COVID-19'),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                  '1. Tiêm chủng vắc xin là bệnh pháp hiệu quả, tuy nhiên vắc xin phòng COVID-19 có thể không phòng được bệnh hoàn toàn. Người được tiêm chủng vắc xin phòng COVID-19 đủ liều có thể phòng được bệnh hoặc giảm mức độ nặng nếu mắc COVID-19. Sau khi được tiêm vắc xin phòng COVID-19 vẫn cần thực hiện đầy đủ Thông điệp 5K phòng, chống dịch COVID-19.'),
+            ],
+          ),
+          const SizedBox(height: 10),
+          const Text(
+              '2. Tiêm chủng vắc xin phòng COVID-19 có thể gây ra một số biểu hiện tại chỗ tiêm hoặc toàn thân như sưng, đau chỗ tiêm, nhức đầu, buồn nôn, sốt, đau cơ,... hoặc tai biến nặng sau tiêm chủng.'),
+          const SizedBox(height: 10),
+          const Text(
+              '3. Khi có triệu chứng bất thường về sức khỏe, người được tiêm chủng cần liên hệ với cơ sở y tế gần nhất để được tư vấn, khám và điều trị kịp thời.'),
+          const Text(
+              'Sau khi đã đọc các thông tin nêu trên, tôi đã hiểu về các nguy cơ và:'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _confirmed = !_confirmed;
+                    });
+                  },
+                  icon: _confirmed
+                      ? const Icon(Icons.check_box_outlined)
+                      : const Icon(Icons.check_box_outline_blank)),
+              const Text('Đồng ý tiêm chủng'),
+            ],
           ),
           const SizedBox(height: 20),
           Container(
@@ -39,18 +175,29 @@ class PatientPage extends StatelessWidget {
             ),
             child: TextButton(
               onPressed: () async {
-                // Chỗ này thêm hàm add
-                await createReport(Report(
-                  identification: _identification.text,
-                  patientName: _name.text,
-                  age: 10,
-                  image: 'image',
-                  doctorConfirmed: 'false',
-                ));
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ShowQRPage()));
+                if (!_confirmed) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Bạn phải tick vào ô đồng ý tiêm!'),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                } else {
+                  await createReport(Report(
+                    identification: _cccd.text,
+                    patientName: _hoten.text,
+                    age: 10,
+                    image: 'image',
+                    doctorConfirmed: 'false',
+                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ShowQRPage(
+                                data: _cccd.text.toString(),
+                              )));
+                }
+                // ignore: curly_braces_in_flow_control_structures
               },
               child: const Text(
                 'Save/QR',
@@ -62,6 +209,27 @@ class PatientPage extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 20),
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       var user = FirebaseFirestore.instance
+          //           .collection('idiid')
+          //           .doc(_cccd.text.toString());
+          //       user.set({
+          //         'CCCD': _cccd.text.toString(),
+          //         'Name': _hoten.text.toString(),
+          //         'Ismale': _ismale.toString(),
+          //         'Birtday': _ns.text.toString(),
+          //         'Job': _nn.text.toString(),
+          //         'Company': _dvct.text.toString(),
+          //         'Address': _dclh.text.toString(),
+          //         'Phone': _sdt.text.toString(),
+          //       });
+          //     });
+          //   },
+          //   icon: Icon(Icons.qr_code),
+          // ),
         ],
       ),
     );
