@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:covid_report/data/data_provider/report_provider.dart';
 import 'package:covid_report/data/model/report.dart';
 import 'package:covid_report/presentation/presentations.dart';
+import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -32,10 +33,8 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   @override
   Widget build(BuildContext context) {
-    if (result != null) {
-      log('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}');
-    }
     return Scaffold(
+      backgroundColor: AppColors.primaryColor,
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -135,7 +134,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

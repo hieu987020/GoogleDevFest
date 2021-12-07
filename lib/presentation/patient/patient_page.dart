@@ -1,15 +1,20 @@
 import 'package:covid_report/data/data_provider/report_provider.dart';
 import 'package:covid_report/data/model/report.dart';
 import 'package:covid_report/presentation/presentations.dart';
+import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PatientPage extends StatelessWidget {
   const PatientPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        title: const Text("Xác nhận tiêm chủng"),
+        backgroundColor: AppColors.primaryColor,
+      ),
+      body: const SingleChildScrollView(
         child: ReportView(),
       ),
     );
@@ -37,8 +42,7 @@ class _ReportViewState extends State<ReportView> {
 
   bool _ismale = false;
   bool _isFemale = false;
-  // bool _value = false;
-  // int val = -1;
+
   @override
   Widget build(BuildContext context) {
     SingingCharacter? _character = SingingCharacter.Male;
@@ -47,7 +51,7 @@ class _ReportViewState extends State<ReportView> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(height: 80),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
@@ -55,8 +59,9 @@ class _ReportViewState extends State<ReportView> {
                 "PHIẾU XÁC NHẬN TIÊM CHỦNG COVID-19",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 19,
                   overflow: TextOverflow.ellipsis,
+                  color: AppColors.primaryColor,
                 ),
               ),
             ],
@@ -72,7 +77,10 @@ class _ReportViewState extends State<ReportView> {
           ),
           Row(
             children: [
-              const Text('Nam'),
+              Text(
+                'Nam',
+                style: TextStyle(color: Colors.grey[700], fontSize: 16),
+              ),
               IconButton(
                 onPressed: () {
                   if (_ismale == false) {
@@ -83,10 +91,14 @@ class _ReportViewState extends State<ReportView> {
                   }
                 },
                 icon: _ismale
-                    ? const Icon(Icons.check_box_outlined)
-                    : const Icon(Icons.check_box_outline_blank),
+                    ? Icon(Icons.check_box_outlined, color: Colors.grey[700])
+                    : Icon(Icons.check_box_outline_blank,
+                        color: Colors.grey[700]),
               ),
-              const Text('Nữ'),
+              Text(
+                'Nữ',
+                style: TextStyle(color: Colors.grey[700], fontSize: 16),
+              ),
               IconButton(
                 onPressed: () {
                   if (_isFemale == false) {
@@ -97,14 +109,16 @@ class _ReportViewState extends State<ReportView> {
                   }
                 },
                 icon: _isFemale
-                    ? const Icon(Icons.check_box_outlined)
-                    : const Icon(Icons.check_box_outline_blank),
+                    ? Icon(Icons.check_box_outlined, color: Colors.grey[700])
+                    : Icon(Icons.check_box_outline_blank,
+                        color: Colors.grey[700]),
               ),
             ],
           ),
           TextField(
             decoration: const InputDecoration(labelText: 'Ngày tháng năm sinh'),
             controller: _ns,
+            style: const TextStyle(color: AppColors.primaryColor),
           ),
           TextField(
             decoration: const InputDecoration(labelText: 'Nghề nghiệp'),
@@ -132,7 +146,13 @@ class _ReportViewState extends State<ReportView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [
-              Text('PHIẾU XÁC NHẬN TIÊM CHỦNG COVID-19'),
+              Text(
+                'Lưu ý:',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -170,7 +190,7 @@ class _ReportViewState extends State<ReportView> {
           Container(
             width: 200,
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: AppColors.primaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextButton(
@@ -190,17 +210,21 @@ class _ReportViewState extends State<ReportView> {
                     image: 'image',
                     doctorConfirmed: 'false',
                   ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => ShowQRPage(
+                  //               data: _cccd.text.toString(),
+                  //             )));
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShowQRPage(
-                                data: _cccd.text.toString(),
-                              )));
+                          builder: (context) => const PatientHome()));
                 }
                 // ignore: curly_braces_in_flow_control_structures
               },
               child: const Text(
-                'Save/QR',
+                'Xác nhận',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -209,7 +233,7 @@ class _ReportViewState extends State<ReportView> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 100),
           // IconButton(
           //   onPressed: () {
           //     setState(() {

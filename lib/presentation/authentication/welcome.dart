@@ -14,27 +14,41 @@ class Welcome extends StatelessWidget {
       body: Center(
         child: GestureDetector(
           // ignore: sized_box_for_whitespace
-          child: Container(
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: Image.asset(
-              AppAssets.imageSyringe,
-              color: Colors.white,
-              width: 10,
-              height: 10,
-            ),
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(26),
-                // color: AppColors.mainColor,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.mainColor1,
-                    AppColors.mainColor2,
-                  ],
-                )),
+          child: Column(
+            children: [
+              const SizedBox(height: 200),
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: Image.asset(
+                  AppAssets.imageSyringe,
+                  color: Colors.white,
+                  width: 10,
+                  height: 10,
+                ),
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(26),
+                    // color: AppColors.mainColor,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.mainColor1,
+                        AppColors.mainColor2,
+                      ],
+                    )),
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                "IM-COVID",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28,
+                ),
+              ),
+            ],
           ),
 
           onTap: () {
@@ -87,7 +101,7 @@ class StartedPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const Text(
-              'CHÀO BẠN ',
+              'CHÀO BẠN !',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

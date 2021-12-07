@@ -13,13 +13,15 @@ class Login extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Padding(
-        padding: const EdgeInsets.all(50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+        padding: const EdgeInsets.only(left: 25, right: 25),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 70),
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Image.asset(
                   AppAssets.imageSyringe,
                   color: Colors.white,
@@ -30,7 +32,7 @@ class Login extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
                     // color: AppColors.mainColor,
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
@@ -39,46 +41,48 @@ class Login extends StatelessWidget {
                       ],
                     )),
               ),
-            ),
-            const SizedBox(height: 30),
-            const Text(
-              'MỪNG BẠN QUAY LẠI ',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+              const SizedBox(height: 30),
+              const Text(
+                'Xin chào bạn,',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
-            ),
-            const SizedBox(height: 15),
-            const Text(
-              'Mời bạn đăng nhập ',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+              const SizedBox(height: 15),
+              const Text(
+                'Đăng nhập',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                decoration: new InputDecoration(
+              const SizedBox(height: 30),
+              const TextField(
+                decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.greenAccent, width: 2.0),
+                    borderSide: BorderSide(
+                      color: Colors.greenAccent,
+                      width: 2.0,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: AppColors.boderFocus, width: 2.0),
                   ),
                   hintText: 'Username',
+                  hintStyle: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.white,
+                  ),
                 ),
                 style: TextStyle(color: Colors.white),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                decoration: new InputDecoration(
+              const SizedBox(height: 20),
+              const TextField(
+                decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.greenAccent, width: 2.0),
@@ -88,77 +92,89 @@ class Login extends StatelessWidget {
                         BorderSide(color: AppColors.boderFocus, width: 2.0),
                   ),
                   hintText: 'Password',
+                  hintStyle: TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
                 style: TextStyle(color: Colors.white),
               ),
-            ),
-            const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 255,
-                  height: 61,
-                  decoration: BoxDecoration(
-                    color: AppColors.loginColor.withOpacity(1.0),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => PatientPage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    },
-                    child: Container(
-                      child: const Text(
-                        'Người tiêm',
-                        style: TextStyle(
-                          color: Colors.white,
-                          // fontWeight: FontWeight.bold,
-                          fontSize: 18,
+              const SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 255,
+                    height: 61,
+                    decoration: BoxDecoration(
+                      color: AppColors.loginColor.withOpacity(1.0),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        // Navigator.pushAndRemoveUntil(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const PatientHome()),
+                        //   (Route<dynamic> route) => false,
+                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PatientHome()),
+                        );
+                      },
+                      child: Container(
+                        child: const Text(
+                          'Người tiêm chủng',
+                          style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 255,
-                  height: 61,
-                  decoration: BoxDecoration(
-                    color: AppColors.loginColor.withOpacity(1.0),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => DoctorPage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    },
-                    child: Container(
-                      child: const Text(
-                        'Bác sỹ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          // fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                ],
+              ),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 255,
+                    height: 61,
+                    decoration: BoxDecoration(
+                      color: AppColors.loginColor.withOpacity(1.0),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DoctorPage()),
+                        );
+                        // Navigator.pushAndRemoveUntil(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => DoctorPage()),
+                        //   (Route<dynamic> route) => false,
+                        // );
+                      },
+                      child: Container(
+                        child: const Text(
+                          'Nhân viên y tế',
+                          style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

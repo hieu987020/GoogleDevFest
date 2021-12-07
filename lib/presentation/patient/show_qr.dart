@@ -1,3 +1,4 @@
+import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -10,10 +11,28 @@ class ShowQRPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mã QR của bạn'),
+        title: const Text("Thông tin mã QR"),
+        backgroundColor: AppColors.primaryColor,
       ),
-      body: Center(
-        child: QRCustome(data: data),
+      body: Column(
+        children: [
+          const SizedBox(height: 100),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "Nguyễn Văn A",
+                style: TextStyle(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          QRCustome(data: data),
+        ],
       ),
     );
   }
