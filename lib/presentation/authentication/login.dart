@@ -30,12 +30,25 @@ class Login extends StatelessWidget {
               obscureText: true,
             ),
             ElevatedButton(
-              child: const Text('LOGIN'),
+              child: const Text('LOGIN AS DOCTOR'),
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const DoctorPage()),
+                //   (Route<dynamic> route) => false,
+                // );
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const DoctorPage()),
-                  (Route<dynamic> route) => false,
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text('LOGIN AS PATIENT'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PatientPage()),
                 );
               },
             ),

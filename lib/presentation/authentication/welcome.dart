@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:covid_report/presentation/authentication/login.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,13 @@ class Welcome extends StatelessWidget {
           child: Container(
             width: 100,
             height: 100,
-            child: Image.asset('assets/images/google.png'),
+            // decoration: BoxDecoration(
+            //   color: Colors.red,
+            // ),
+            child: Image.asset(
+              'assets/images/google.png',
+              // fit: BoxFit.none,
+            ),
           ),
           onTap: () {
             Navigator.pushAndRemoveUntil(

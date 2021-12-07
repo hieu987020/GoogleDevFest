@@ -8,14 +8,7 @@ class DoctorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quản lý F0'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const AddReport()),
-        ),
+        title: const Text('Bác sĩ A'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -31,16 +24,17 @@ class DoctorPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const CircleAvatar(
+                        CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.red,
+                          child: Image.asset('assets/images/avatar.png'),
                         ),
                         const SizedBox(width: 50),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
-                            Text('CCCD: 123456789',
+                            Text('Khu vực: Hà Nội',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                             Text('Tuổi: 25',
@@ -60,10 +54,9 @@ class DoctorPage extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(height: 10),
-            const DateContainer(title: 'Ngày 1'),
-            const DateContainer(title: 'Ngày 2'),
-            const DateContainer(title: 'Ngày 3'),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
               width: 200,
               decoration: BoxDecoration(
@@ -89,37 +82,6 @@ class DoctorPage extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class DateContainer extends StatelessWidget {
-  const DateContainer({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-  final String title;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 5),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 70,
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 14, top: 25),
-          child: Text(title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              )),
         ),
       ),
     );
