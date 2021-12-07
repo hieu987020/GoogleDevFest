@@ -151,7 +151,7 @@ class Login extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const DoctorPage()),
+                              builder: (context) => const DoctorHome()),
                         );
                         // Navigator.pushAndRemoveUntil(
                         //   context,

@@ -68,7 +68,7 @@ class _ReportViewState extends State<ReportView> {
           ),
           const SizedBox(height: 10),
           TextField(
-            decoration: const InputDecoration(labelText: 'Họ tên'),
+            decoration: const InputDecoration(labelText: 'Họ và tên'),
             controller: _hoten,
           ),
           TextField(
