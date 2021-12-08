@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:covid_report/business/business.dart';
 import 'package:covid_report/data/model/report.dart';
 import 'package:covid_report/presentation/doctor/doctor_home.dart';
@@ -497,5 +495,3 @@ class CustomeReportText extends StatelessWidget {
     );
   }
 }
-
-class tool {}
