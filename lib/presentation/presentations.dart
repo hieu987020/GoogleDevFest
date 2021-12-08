@@ -6,3 +6,7 @@ export 'doctor/update_report.dart';
 export 'patient/patient_report.dart';
 export 'patient/show_qr.dart';
 export 'patient/patient_home.dart';
+export 'theme/app_assets.dart';
+export 'theme/app_colors.dart';
+export 'theme/app_fonts.dart';
+export 'theme/app_styles.dart';

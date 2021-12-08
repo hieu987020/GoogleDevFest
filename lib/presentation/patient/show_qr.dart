@@ -1,4 +1,4 @@
-import 'package:covid_report/values/app_colors.dart';
+import 'package:covid_report/presentation/presentations.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -21,7 +21,7 @@ class ShowQRPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text(
-                "Nguyễn Văn A",
+                "Nguyễn Thanh Hiếu",
                 style: TextStyle(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,

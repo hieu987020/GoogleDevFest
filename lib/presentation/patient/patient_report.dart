@@ -3,7 +3,6 @@
 import 'package:covid_report/business/business.dart';
 import 'package:covid_report/data/model/report.dart';
 import 'package:covid_report/presentation/presentations.dart';
-import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,16 +66,16 @@ class ReportView extends StatefulWidget {
 }
 
 class _ReportViewState extends State<ReportView> {
-  final _hoten = TextEditingController();
-  final _ns = TextEditingController();
-  final _nn = TextEditingController();
-  final _dvct = TextEditingController();
-  final _dclh = TextEditingController();
-  final _sdt = TextEditingController();
-  final _cccd = TextEditingController();
+  final _hoten = TextEditingController(text: 'Nguyễn Thanh Hiếu');
+  final _ns = TextEditingController(text: '22/8/2000');
+  final _nn = TextEditingController(text: 'Sinh viên');
+  final _dvct = TextEditingController(text: 'Hồ Chí Minh');
+  final _dclh = TextEditingController(text: '345 Nguyễn Trãi, Quận 1, TP.HCM');
+  final _sdt = TextEditingController(text: '0909868415');
+  final _cccd = TextEditingController(text: '555500007777');
   bool _confirmed = false; // xác nhận tiêm vắc xin
 
-  bool _ismale = false;
+  bool _ismale = true;
   bool _isFemale = false;
 
   @override

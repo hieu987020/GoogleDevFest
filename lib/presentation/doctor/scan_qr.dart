@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:covid_report/business/business.dart';
 import 'package:covid_report/presentation/presentations.dart';
-import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

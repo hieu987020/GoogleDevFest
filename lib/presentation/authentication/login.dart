@@ -1,17 +1,16 @@
 import 'package:covid_report/presentation/presentations.dart';
-import 'package:covid_report/values/app_assets.dart';
-import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
-  // ignore: unused_field
-  final TextEditingController _usernameController = TextEditingController();
-  // ignore: unused_field
-  final TextEditingController _passwordController = TextEditingController();
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _usernameController =
+        TextEditingController(text: 'imcovid19');
+    TextEditingController _passwordController =
+        TextEditingController(text: 'imcovid19');
+
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Padding(
@@ -62,8 +61,8 @@ class Login extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                decoration: const InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.greenAccent,
@@ -80,11 +79,12 @@ class Login extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
+                controller: _usernameController,
               ),
               const SizedBox(height: 20),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                decoration: const InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.greenAccent, width: 2.0),
@@ -96,7 +96,9 @@ class Login extends StatelessWidget {
                   hintText: 'Password',
                   hintStyle: TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
+                controller: _passwordController,
+                obscureText: true,
               ),
               const SizedBox(height: 25),
               Row(

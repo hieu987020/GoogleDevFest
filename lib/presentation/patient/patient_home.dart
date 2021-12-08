@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:covid_report/business/business.dart';
 import 'package:covid_report/presentation/presentations.dart';
-import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -98,7 +97,7 @@ class PatientHome extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const ShowQRPage(
-                                        data: '123',
+                                        data: '555500007777',
                                       )));
                         },
                       ),

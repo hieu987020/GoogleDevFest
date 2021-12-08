@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:covid_report/presentation/authentication/login.dart';
-import 'package:covid_report/values/app_assets.dart';
-import 'package:covid_report/values/app_colors.dart';
+import 'package:covid_report/presentation/presentations.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
