@@ -1,26 +1,56 @@
-import 'dart:developer';
-import 'package:covid_report/data/data_provider/report_provider.dart';
+import 'package:covid_report/business/business.dart';
 import 'package:covid_report/data/model/report.dart';
+import 'package:covid_report/presentation/doctor/doctor_home.dart';
 import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Update extends StatelessWidget {
-  const Update({Key? key, required this.report}) : super(key: key);
-  final Report report;
+  const Update({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    log(report.toString());
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
-        title: const Text(
-          'Cập nhật hồ sơ khám sàng lọc',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    return BlocListener<ReportUpdateBloc, ReportUpdateState>(
+      listener: (context, state) {
+        if (state is ReportUpdateLoading) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Center(
+                child: Container(
+                  width: 50,
+                  height: 40,
+                  color: Colors.white,
+                  child: const Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        color: Colors.grey,
+                        strokeWidth: 1,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        }
+        if (state is ReportUpdateLoaded) {
+          Navigator.pop(context);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const DoctorHome()));
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.primaryColor,
+          title: const Text(
+            'Cập nhật hồ sơ khám sàng lọc',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: UpdateView(
-          report: report,
+        body: const SingleChildScrollView(
+          child: UpdateView(),
         ),
       ),
     );
@@ -30,10 +60,7 @@ class Update extends StatelessWidget {
 class UpdateView extends StatefulWidget {
   const UpdateView({
     Key? key,
-    required this.report,
   }) : super(key: key);
-
-  final Report report;
 
   @override
   State<UpdateView> createState() => _UpdateViewState();
@@ -43,6 +70,11 @@ class _UpdateViewState extends State<UpdateView> {
   bool _is1 = false;
   @override
   Widget build(BuildContext context) {
+    var state = BlocProvider.of<ReportBloc>(context).state;
+    Report? report;
+    if (state is ReportFetchLoaded) {
+      report = state.report;
+    }
     return SafeArea(
       minimum: const EdgeInsets.only(left: 20, right: 20),
       child: Column(
@@ -74,24 +106,20 @@ class _UpdateViewState extends State<UpdateView> {
             ],
           ),
           const SizedBox(height: 20),
-          CustomeReportText(text: "Họ và tên: " + widget.report.patientName),
+          CustomeReportText(text: "Họ và tên: " + report!.identification),
           const SizedBox(height: 20),
-          CustomeReportText(text: "CMND/CCCD: " + widget.report.identification),
-          const SizedBox(height: 20),
-          CustomeReportText(
-              text: "Ngày tháng năm sinh: " + widget.report.identification),
+          CustomeReportText(text: "CMND/CCCD: " + report.identification),
           const SizedBox(height: 20),
           CustomeReportText(
-              text: "Nghề nghiệp: " + widget.report.identification),
+              text: "Ngày tháng năm sinh: " + report.identification),
           const SizedBox(height: 20),
-          CustomeReportText(
-              text: "Đơn vị công tác: " + widget.report.identification),
+          CustomeReportText(text: "Nghề nghiệp: " + report.identification),
           const SizedBox(height: 20),
-          CustomeReportText(
-              text: "Địa chỉ liên hệ: " + widget.report.identification),
+          CustomeReportText(text: "Đơn vị công tác: " + report.identification),
           const SizedBox(height: 20),
-          CustomeReportText(
-              text: "Số điện thoại: " + widget.report.identification),
+          CustomeReportText(text: "Địa chỉ liên hệ: " + report.identification),
+          const SizedBox(height: 20),
+          CustomeReportText(text: "Số điện thoại: " + report.identification),
           const SizedBox(height: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,13 +154,13 @@ class _UpdateViewState extends State<UpdateView> {
                 ),
                 child: TextButton(
                   onPressed: () async {
-                    await updateReport(Report(
-                      identification: widget.report.identification,
-                      patientName: widget.report.patientName,
-                      age: 10,
-                      image: 'image',
+                    BlocProvider.of<ReportUpdateBloc>(context)
+                        .add(ReportUpdateSubmitEvent(
+                            report: Report(
+                      identification: report!.identification,
+                      patientName: report.patientName,
                       doctorConfirmed: 'true',
-                    ));
+                    )));
                   },
                   child: const Text(
                     'Xác nhận',

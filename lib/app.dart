@@ -1,5 +1,8 @@
+import 'package:covid_report/business/business.dart';
 import 'package:covid_report/presentation/presentations.dart';
+import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -7,13 +10,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ReportCreateBloc>(
+          create: (BuildContext context) => ReportCreateBloc(),
+        ),
+        BlocProvider<ReportBloc>(
+          create: (BuildContext context) => ReportBloc(),
+        ),
+        BlocProvider<ReportUpdateBloc>(
+          create: (BuildContext context) => ReportUpdateBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'IM-COVID',
+        theme: ThemeData(
+          primaryColor: AppColors.primaryColor,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const Welcome(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: const Welcome(),
     );
   }
 }

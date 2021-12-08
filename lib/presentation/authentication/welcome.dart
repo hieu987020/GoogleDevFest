@@ -18,7 +18,7 @@ class Welcome extends StatelessWidget {
             children: [
               const SizedBox(height: 200),
               Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Image.asset(
                   AppAssets.imageSyringe,
                   color: Colors.white,
@@ -30,7 +30,7 @@ class Welcome extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
                     // color: AppColors.mainColor,
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
@@ -77,26 +77,25 @@ class StartedPage extends StatelessWidget {
             const SizedBox(height: 180),
             // ignore: sized_box_for_whitespace
             Container(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: Image.asset(
-                  AppAssets.imageSyringe,
-                  color: Colors.white,
-                  fit: BoxFit.cover,
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: Image.asset(
+                AppAssets.imageSyringe,
+                color: Colors.white,
+                fit: BoxFit.cover,
+              ),
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(26),
+                // color: AppColors.mainColor,
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.mainColor1,
+                    AppColors.mainColor2,
+                  ],
                 ),
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(26),
-                    // color: AppColors.mainColor,
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        AppColors.mainColor1,
-                        AppColors.mainColor2,
-                      ],
-                    )),
               ),
             ),
             const SizedBox(height: 30),
@@ -131,7 +130,7 @@ class StartedPage extends StatelessWidget {
               decoration: BoxDecoration(
                   // color: Colors.green,
                   borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
@@ -147,14 +146,12 @@ class StartedPage extends StatelessWidget {
                     (Route<dynamic> route) => false,
                   );
                 },
-                child: Container(
-                  child: const Text(
-                    'Bắt đầu',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                child: const Text(
+                  'Bắt đầu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
                 ),
               ),

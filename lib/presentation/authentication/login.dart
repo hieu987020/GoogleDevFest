@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
+  // ignore: unused_field
   final TextEditingController _usernameController = TextEditingController();
+  // ignore: unused_field
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -121,14 +123,12 @@ class Login extends StatelessWidget {
                               builder: (context) => const PatientHome()),
                         );
                       },
-                      child: Container(
-                        child: const Text(
-                          'Người tiêm chủng',
-                          style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 22,
-                          ),
+                      child: const Text(
+                        'Người tiêm chủng',
+                        style: TextStyle(
+                          color: Colors.white,
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 22,
                         ),
                       ),
                     ),
@@ -159,14 +159,12 @@ class Login extends StatelessWidget {
                         //   (Route<dynamic> route) => false,
                         // );
                       },
-                      child: Container(
-                        child: const Text(
-                          'Nhân viên y tế',
-                          style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 22,
-                          ),
+                      child: const Text(
+                        'Nhân viên y tế',
+                        style: TextStyle(
+                          color: Colors.white,
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 22,
                         ),
                       ),
                     ),

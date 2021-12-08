@@ -1,21 +1,57 @@
-import 'package:covid_report/data/data_provider/report_provider.dart';
+// ignore_for_file: constant_identifier_names
+
+import 'package:covid_report/business/business.dart';
 import 'package:covid_report/data/model/report.dart';
 import 'package:covid_report/presentation/presentations.dart';
 import 'package:covid_report/values/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PatientPage extends StatelessWidget {
   const PatientPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text("Xác nhận tiêm chủng"),
-        backgroundColor: AppColors.primaryColor,
-      ),
-      body: const SingleChildScrollView(
-        child: ReportView(),
+    return BlocListener<ReportCreateBloc, ReportCreateState>(
+      listener: (context, state) {
+        if (state is ReportCreateLoaded) {
+          Navigator.pop(context);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const PatientHome()));
+        }
+        if (state is ReportCreateLoading) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Center(
+                child: Container(
+                  width: 50,
+                  height: 40,
+                  color: Colors.white,
+                  child: const Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        color: Colors.grey,
+                        strokeWidth: 1,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: const Text("Xác nhận tiêm chủng"),
+          backgroundColor: AppColors.primaryColor,
+        ),
+        body: const SingleChildScrollView(
+          child: ReportView(),
+        ),
       ),
     );
   }
@@ -45,6 +81,7 @@ class _ReportViewState extends State<ReportView> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     SingingCharacter? _character = SingingCharacter.Male;
     return SafeArea(
       minimum: const EdgeInsets.only(left: 20, right: 20),
@@ -203,25 +240,14 @@ class _ReportViewState extends State<ReportView> {
                     ),
                   );
                 } else {
-                  await createReport(Report(
+                  BlocProvider.of<ReportCreateBloc>(context)
+                      .add(ReportCreateSubmitEvent(
+                          report: Report(
                     identification: _cccd.text,
                     patientName: _hoten.text,
-                    age: 10,
-                    image: 'image',
                     doctorConfirmed: 'false',
-                  ));
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => ShowQRPage(
-                  //               data: _cccd.text.toString(),
-                  //             )));
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PatientHome()));
+                  )));
                 }
-                // ignore: curly_braces_in_flow_control_structures
               },
               child: const Text(
                 'Xác nhận',
@@ -234,26 +260,6 @@ class _ReportViewState extends State<ReportView> {
             ),
           ),
           const SizedBox(height: 100),
-          // IconButton(
-          //   onPressed: () {
-          //     setState(() {
-          //       var user = FirebaseFirestore.instance
-          //           .collection('idiid')
-          //           .doc(_cccd.text.toString());
-          //       user.set({
-          //         'CCCD': _cccd.text.toString(),
-          //         'Name': _hoten.text.toString(),
-          //         'Ismale': _ismale.toString(),
-          //         'Birtday': _ns.text.toString(),
-          //         'Job': _nn.text.toString(),
-          //         'Company': _dvct.text.toString(),
-          //         'Address': _dclh.text.toString(),
-          //         'Phone': _sdt.text.toString(),
-          //       });
-          //     });
-          //   },
-          //   icon: Icon(Icons.qr_code),
-          // ),
         ],
       ),
     );

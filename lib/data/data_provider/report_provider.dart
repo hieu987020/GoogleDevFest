@@ -70,16 +70,6 @@ Future<Report> getReportByIdentification(String identification) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference reports = firestore.collection('report');
   try {
-    // var report1 = FirebaseFirestore.instance
-    //     .collection('report')
-    //     .doc(identification)
-    //     .snapshots();
-
-    // var report2 = FirebaseFirestore.instance
-    //     .collection('report')
-    //     .doc(identification)
-    //     .snapshots();
-    log("day la CCCD $identification");
     Report? result;
     await reports.get().then((QuerySnapshot querySnapshot) async {
       for (var doc in querySnapshot.docs) {
@@ -87,8 +77,6 @@ Future<Report> getReportByIdentification(String identification) async {
           result = Report(
             identification: doc["Identification"],
             patientName: doc["Name"],
-            age: 10,
-            image: 'image',
             doctorConfirmed: doc["DoctorConfirmed"],
           );
         }
@@ -98,8 +86,6 @@ Future<Report> getReportByIdentification(String identification) async {
       return Report(
         identification: 'fail',
         patientName: 'fail',
-        age: 10,
-        image: 'fail',
         doctorConfirmed: 'fail',
       );
     } else {
