@@ -48,7 +48,7 @@ class PatientHome extends StatelessWidget {
                     top: 50,
                     left: 55,
                     child: UserGuide(
-                        text: "B1: Nhập phiếu xác nhận và nhận QR code",
+                        text: "B1: Nhập phiếu đăng ký và nhận QR code",
                         width: 250,
                         height: 100),
                   ),
