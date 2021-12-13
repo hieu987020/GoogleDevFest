@@ -1,5 +1,5 @@
 # Flutter project: im-covid.
-State management: BloC </br>
+State management: Bloc pattern </br>
 Database: Firestore firebase </br>
 Package: qr_flutter, qr_scanner
 ### Example
