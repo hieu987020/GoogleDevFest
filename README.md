@@ -1,4 +1,4 @@
-# Flutter project: IM-COVID.
+# A Flutter project: IM-COVID.
 State management: Bloc pattern </br>
 Database: Firestore firebase </br>
 Package: qr_flutter, qr_scanner
