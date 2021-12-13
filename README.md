@@ -3,6 +3,10 @@ State management: Bloc pattern </br>
 Database: Firestore firebase </br>
 Package: qr_flutter, qr_scanner
 ### Example
+[<img src="https://github.com/hieu987020/im-covid/blob/main/raw/nguoitim.gif?raw=true" width="200"/>]()
+[<img src="https://github.com/hieu987020/im-covid/blob/main/raw/bacsi.gif?raw=true" width="200"/>]()
+
+
 ```dart
 import 'dart:developer';
 import 'dart:io';
